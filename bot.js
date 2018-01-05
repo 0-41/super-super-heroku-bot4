@@ -12514,4 +12514,4 @@ message.member.addRole(message.guild.roles.find("name", "100"));
 
 
 
-client.login('');
+client.login('BOT_TOKEN');
