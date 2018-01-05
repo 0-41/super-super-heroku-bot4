@@ -12514,4 +12514,4 @@ message.member.addRole(message.guild.roles.find("name", "100"));
 
 
 
-client.login('xM6JEDYg-9xKu_VTsrt8fu5D88fD6VIW');
+client.login('');
