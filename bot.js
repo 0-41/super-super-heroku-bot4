@@ -1,67 +1,21 @@
-const Discord = require('discord.js');
+﻿const Discord = require("discord.js");
 const client = new Discord.Client();
-const YTDL = require('ytdl-core');
-
-var servers = {};
-
-function play(connection, message) {
-    var server = servers[message.guild.id];
-
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {fliter: 'audionly'}));
-
-    server.queue.shift();
-
-    server.dispatcher.on('end', function() {
-        if (server.queue[0]) play(connection, message);
-        else connection.disconnect();
-    });
-}
-
 client.on('ready', () => {
-    console.log('© ︎︎︎ ︎︎︎PanDa...シ| PG#5795  ™');
+console.log("Discord Bot By So.?");
+  console.log('BySo.?')
+  console.log('BySo.?')
+  console.log('BySo.?')
+  console.log('BySo.?')
+  console.log('BySo.?')
+
+
 });
 
-var PREFIX = 'PREFIX_HERE';
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (author) {
+  return author.send(' ** حرام واحد جميل مثلك م يكون عندنا .. تنورنا  https://discord.gg/uQm2EE9 ** ')
 
-client.on('message', message => {
+}).catch(console.error)
+})
 
-var args = message.content.substring(PREFIX.length).split(' ');
-
-    switch (args[0].toLowerCase()) {
-        case 'play':
-            if (!args[1]) {
-                message.channel.sendMessage('Please provide a link');
-                return;
-            }
-
-            if (!message.member.voiceChannel) {
-                    message.channel.sendMessage('You must be in a voice channel');
-                return;
-            }
-
-            if (!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
-            }
-
-            var server = servers[message.guild.id];
-
-            server.queue.push(args[1]);
-
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-                play(connection, message);
-            });
-            break;
-            case 'skip':
-            var server = servers[message.guild.id];
-
-            if(server.dispatcher) server.dispatcher.end();
-                break;
-
-                case 'stop':
-                    var server = server = servers[message.guild.id];
-
-                    if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-                    break;
-    }
-});
 clinet.login(process.env.BOT_TOKEN);
